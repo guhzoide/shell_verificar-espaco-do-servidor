@@ -20,5 +20,6 @@ do
     curl -s -X POST https://api.telegram.org/bot<token_do_seu_bot>/sendMessage -d chat_id=<seu_chat_id> -d text="Uso de disco $disk - Disponvel $avail"
 done < #diretorio da lista
 
-#remove o "arquivo.txt" para nao causar bugs em verificacoes futuras 
+#copa para um outro deritorio em sequencia remove o "arquivo.txt" para nao causar bugs em verificacoes futuras 
+cp -r 'diretorio do arquivo.txt' /dir/para/salvar/arquivo.txt
 rm -r 'diretorio do arquivo.txt'
