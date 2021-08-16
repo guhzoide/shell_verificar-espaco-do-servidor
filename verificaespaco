@@ -16,8 +16,6 @@ do
     echo " Uso de disco: "$disk
     echo " Espaco livre: "$avail
     echo ""    
-    #envia as informações via telegram 
-    curl -s -X POST https://api.telegram.org/bot<token_bot>/sendMessage -d chat_id=<chat_id> -d text="Servidor $line esta com $disk de uso e $avail livre"
 done < #diretorio da lista
 
 #envia as informações via e-mail
