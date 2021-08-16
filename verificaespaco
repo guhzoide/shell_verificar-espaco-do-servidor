@@ -12,7 +12,7 @@ do
     echo " Uso de disco: "  $disk >> $log
     echo          >> $log
     echo ""
-    echo "  loja $line"
+    echo " Servidor $line"
     echo " Uso de disco: "$disk
     echo " Espaco livre: "$avail
     echo ""    
