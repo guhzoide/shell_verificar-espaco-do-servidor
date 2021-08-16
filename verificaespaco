@@ -23,3 +23,5 @@ cat $log | mail -s "< MSG >" <e-mail para qual deseja enviar os dados>
 
 #envia as informações via telegram 
 curl -s -X POST https://api.telegram.org/bot<token_bot>/sendMessage -d chat_id=<chat_id> -d text="MSG que deseja enviar com as variaveis"
+
+rm -r 'diretorio do arquivo.txt'
