@@ -16,10 +16,9 @@ do
     echo " Uso de disco: "$disk
     echo " Espaco livre: "$avail
     echo ""    
+    #envia as informações via Telegram
+    curl -s -X POST https://api.telegram.org/bot<token_do_seu_bot>/sendMessage -d chat_id=<seu_chat_id> -d text="Uso de disco $disk - Disponvel $avail"
 done < #diretorio da lista
-
-#envia as informações via e-mail
-cat $log | mail -s "Espaco dos servidores" <e-mail para qual deseja enviar os dados>
 
 #remove o "arquivo.txt" para nao causar bugs em verificacoes futuras 
 rm -r 'diretorio do arquivo.txt'
