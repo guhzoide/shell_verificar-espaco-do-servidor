@@ -16,7 +16,7 @@ do
     echo " Uso de disco: "$resulta
     echo " Espaco livre: "$resulta1
     echo "" 
-done < /usr/bin/listalojas
+done < #diretorio da lista
 
 #envia as informações via e-mail
 cat $log | mail -s "< MSG >" <e-mail para qual deseja enviar os dados>
