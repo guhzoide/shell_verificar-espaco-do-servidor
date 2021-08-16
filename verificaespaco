@@ -5,24 +5,23 @@ while read line
 do   
     log='"arquivo.txt" para guardar os resultados'
     echo "********************************" #as duas variaveis a seguir possui parametros para meu uso'
-    resulta=$(ssh -n $line df -h / | awk '{print $5}' | grep -v Use | head -n2) #uso de disco
-    resulta1=$(ssh -n $line df -h / | awk '{print $4}' | grep -v Avail | head -n4) #espaco livre
+    disk=$(ssh -n $line df -h / | awk '{print $5}' | grep -v Use | head -n2) #uso de disco
+    avail=$(ssh -n $line df -h / | awk '{print $4}' | grep -v Avail | head -n4) #espaco livre
     echo "********************" >> $log        
     echo "   $line" >> $log
-    echo " Uso de disco: "  $resulta >> $log
+    echo " Uso de disco: "  $disk >> $log
     echo          >> $log
     echo ""
     echo "  loja $line"
-    echo " Uso de disco: "$resulta
-    echo " Espaco livre: "$resulta1
-    echo "" 
+    echo " Uso de disco: "$disk
+    echo " Espaco livre: "$avail
+    echo ""    
+    #envia as informações via telegram 
+    curl -s -X POST https://api.telegram.org/bot<token_bot>/sendMessage -d chat_id=<chat_id> -d text="Servidor $line esta com $disk de uso e $avail livre"
 done < #diretorio da lista
 
 #envia as informações via e-mail
-cat $log | mail -s "< MSG >" <e-mail para qual deseja enviar os dados>
-
-#envia as informações via telegram 
-curl -s -X POST https://api.telegram.org/bot<token_bot>/sendMessage -d chat_id=<chat_id> -d text="MSG que deseja enviar com as variaveis"
+cat $log | mail -s "Espaco dos servidores" <e-mail para qual deseja enviar os dados>
 
 #remove o "arquivo.txt" para nao causar bugs em verificacoes futuras 
 rm -r 'diretorio do arquivo.txt'
